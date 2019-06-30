@@ -1,0 +1,30 @@
+version: '3.4'
+
+services:
+  unittestproject:
+    image: ${DOCKER_REGISTRY-}unittestproject
+    build:
+      context: .
+      dockerfile: UnitTestProject/Dockerfile
+    volumes:
+      - ./UnitTestProject/mnt/images:/app/images
+      - ./UnitTestProject/mnt/result:/app/result
+      - ./UnitTestProject/mnt/dll:/app/dll
+    networks:
+      - selenium-test-nw
+    depends_on:
+      - selenium-server
+    command: ["bash","/app/UnitTestProject/wait-for-selenium-server.bash","unittestproject_selenium-server_1","dotnet vstest UnitTestProject.dll"]
+
+
+  selenium-server:
+    image: selenium/standalone-chrome-debug
+    ports:
+      - 4444:4444
+      - 5900:5900
+    networks:
+      - selenium-test-nw
+
+networks:
+  selenium-test-nw:
+    external: false
