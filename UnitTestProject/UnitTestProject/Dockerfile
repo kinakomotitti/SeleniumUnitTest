@@ -1,4 +1,4 @@
-﻿		#テスト実行には、SDKが必要
+﻿#テスト実行には、SDKが必要
 FROM mcr.microsoft.com/dotnet/core/sdk:3.0-stretch
 WORKDIR /app
 
@@ -11,11 +11,8 @@ ENV LC_CTYPE ja_JP.UTF-8
 
 
 #コンパイルした結果だけをコンテナに追加
-#COPY ["./bin/Debug/netcoreapp3.0/", "/app"]
-#COPY ["wait-for-selenium-server.bash", "/app"]
-COPY . .
+COPY ["./bin/Debug", "/app"]
 
 WORKDIR /app/dll
 #DLLを利用したテストの実行は、vstestオプションを利用する。
-CMD	["bash","/app/UnitTestProject/wait-for-selenium-server.bash","unittestproject_selenium-server_1","--","dotnet","vstest","UnitTestProject.dll"]
-#CMD	["dotnet","vstest","UnitTestProject.dll"]
+CMD	["bash","wait-for-selenium-server.bash","unittestproject_selenium-server_1","--","dotnet","vstest","UnitTestProject.dll"]
