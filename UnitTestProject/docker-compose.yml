@@ -13,6 +13,11 @@ services:
       - selenium-test-nw
     depends_on:
       - selenium-server
+    environment:
+      - WEB_DRIVER_HOST=unittestproject_selenium-server_1
+      - RESULT_DIR=/app/result
+      - IMAGE_DIR=/app/images
+      - EXECUTE_TEST_MODULE=UnitTestProject.dll
 
   selenium-server:
     image: selenium/standalone-chrome-debug

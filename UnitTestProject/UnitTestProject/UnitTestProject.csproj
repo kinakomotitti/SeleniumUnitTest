@@ -27,6 +27,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\Kelenium\Kelenium.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
     <None Update="wait-for-selenium-server.bash">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
