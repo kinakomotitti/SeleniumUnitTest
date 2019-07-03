@@ -9,7 +9,7 @@ for i in {1..10} ; do
 		
 		echo start >> /app/result/test-start.flag
 		
-		dotnet vstest $EXECUTE_TEST_MODULE --logger:"trx;LogFileName=test.xml" --ResultsDirectory:/app/result
+		dotnet vstest $EXECUTE_TEST_MODULE --logger:"trx;LogFileName=test.trx" --ResultsDirectory:/app/result
 		
 		echo start >> /app/result/test-end.flag
 		
