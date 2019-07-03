@@ -8,6 +8,8 @@ for i in {1..10} ; do
 	if [ `curl http://$WEB_DRIVER_HOST:4444/  -o /dev/null -w '%{http_code}\n' -s` = 200 ]; then
 		
 		echo start >> /app/result/test-start.flag
+
+		dotnet --version
 		
 		dotnet vstest $EXECUTE_TEST_MODULE --logger:"trx;LogFileName=test.trx" --ResultsDirectory:/app/result
 		
