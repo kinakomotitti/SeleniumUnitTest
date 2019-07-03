@@ -1,0 +1,29 @@
+version: '3.4'
+
+services:
+  unittestproject:
+    image: kinakomotitti/selenium-test
+    volumes:
+      - ./UnitTestProject/mnt/images:/app/images
+      - ./UnitTestProject/mnt/result:/app/result
+    networks:
+      - selenium-test-nw
+    depends_on:
+      - selenium-server
+    environment:
+      - WEB_DRIVER_HOST=unittestproject_selenium-server_1
+      - RESULT_DIR=/app/result
+      - IMAGE_DIR=/app/images
+      - EXECUTE_TEST_MODULE=UnitTestProject.dll
+
+  selenium-server:
+    image: selenium/standalone-chrome-debug
+    ports:
+      - 4444:4444
+      - 5900:5900
+    networks:
+      - selenium-test-nw
+
+networks:
+  selenium-test-nw:
+    external: false
