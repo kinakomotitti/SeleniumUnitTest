@@ -23,7 +23,7 @@ namespace UnitTestProject
                     driver.Navigate().GoToUrl("https://www.google.com");
                     screenshot.TakeAScreenshot();
 
-                    driver.FindElement(By.ClassName("gLFyf")).SendKeys("Ç´Ç»ï≤ñ›,net");
+                    driver.FindElement(By.ClassName("gLFyf")).SendKeys("„Åç„Å™Á≤â„ÇÇ„Å°net");
                     screenshot.TakeAScreenshot();
 
                     driver.FindElement(By.ClassName("gLFyf")).SendKeys(Keys.Enter);
@@ -34,7 +34,7 @@ namespace UnitTestProject
 
 
                     var actual = driver.FindElement(By.TagName("h1")).Text;
-                    var expected = "Ç´Ç»Ç±Ç‡Çø.net";
+                    var expected = "„Åç„Å™„Åì„ÇÇ„Å°.net";
                     Assert.AreEqual(expected, actual);
                 }
                 catch (Exception ex)
